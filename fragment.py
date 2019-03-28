@@ -3,7 +3,7 @@
 # send fragmented udp segments
 
 from scapy.all import *
-dip="129.129.224.21"
+dip="172.19.19.19"
 payload="A"*496+"B"*500
 packet=IP(dst=dip,id=12345)/UDP(sport=7001,dport=7001)/payload
 
