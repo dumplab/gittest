@@ -1,5 +1,5 @@
 #!/usr/bin/python
-"""Bridge traffic between interfaces. Reduce MSS size in the flow
+"""Bridge traffic between interfaces. Reduce MSS size on the flow
 
 just a start ...
 
