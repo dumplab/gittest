@@ -12,7 +12,7 @@ __version__   = "1.0"
 from scapy.all import *
 import re
 
-# default capture settings
+# default settings
 bridgeInterface    = ["enp1s0f0","enp1s0f1"] # interfaces to bridge
 tcpMSS             = 1400                    # adjust to this size
 debug              = False                   # enable debugging
@@ -63,7 +63,6 @@ def pkt_callback_xfrm21(pkt):
                 if not (pkt[TCP].flags==2 or pkt[TCP].flags==18 or pkt[TCP].flags==66 or pkt[TCP].flags==194):
                         return retVal
                 retVal = modifyMSS(pkt)
-                #ret = performAttack(pkt)
         return retVal
 
 print("********************************************************")
@@ -72,7 +71,6 @@ print("********************************************************")
 print("* Bridge interface: " + str(bridgeInterface[0]))
 print("* Bridge interface: " + str(bridgeInterface[1]))
 print("* Reduce TCP MSS:   " + str(tcpMSS) + " bytes")
-
 print("********************************************************")
 print("READY... bridging packets")
 print("********************************************************")
