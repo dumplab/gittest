@@ -1,8 +1,7 @@
 #!/usr/bin/python
-"""Bridge traffic between interfaces. Adjust MSS size on the flow
+"""Bridge traffic between interfaces. Adjust MSS size on the flow.
 
 Requires scapy
-
 """
 __author__    = "dumplab"
 __copyright__ = "2022 dumplab"
@@ -14,7 +13,7 @@ import re
 
 # default settings
 bridgeInterface    = ["enp1s0f0","enp1s0f1"] # interfaces to bridge
-tcpMSS             = 1400                    # adjust to this size
+tcpMSS             = 1400                    # adjust max MSS size
 debug              = False                   # enable debugging
 cnt                = 0
 
@@ -39,7 +38,7 @@ def modifyMSS(pkt):
                         newOpt.append(opt)
         if debug:
                 print("New TCP opt:" + str(newOpt))
-        # save new opts
+        # save opts
         pkt[TCP].options = newOpt
         del pkt[TCP].chksum # delete checksum so scapy can recompute
         if debug:
