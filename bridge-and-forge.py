@@ -14,8 +14,7 @@ import re
 
 # default capture settings
 bridgeInterface    = ["enp1s0f0","enp1s0f1"] # interfaces to bridge
-tcpMSS             = 1380                    # adjust to this size
-# internals
+tcpMSS             = 1400                    # adjust to this size
 debug              = False                   # enable debugging
 cnt                = 0
 
@@ -43,10 +42,9 @@ def modifyMSS(pkt):
         # save new opts
         pkt[TCP].options = newOpt
         del pkt[TCP].chksum # delete checksum so scapy can recompute
-        cnt += 1
         if debug:
+                cnt += 1
                 print("Modified packet #" + str(cnt) + " from source: " + str(pkt[IP].src) + " to " + str(pkt[IP].dst))
-        cnt += 1
         return pkt
 
 def pkt_callback_xfrm12(pkt):
