@@ -14,7 +14,7 @@ import re
 # default settings
 bridgeInterface    = ["enp1s0f0","enp1s0f1"] # interfaces to bridge
 tcpMSS             = 1400                    # adjust max MSS size
-debug              = False                   # enable debugging
+debug              = True                    # enable debugging
 cnt                = 0
 
 def modifyMSS(pkt):
@@ -50,7 +50,7 @@ def pkt_callback_xfrm12(pkt):
         retVal = True
         if pkt.haslayer(TCP):
                 # ignore everything without a SYN or SYN&ACK or handshake options
-                if not (pkt[TCP].flags==2 or pkt[TCP].flags==18 or pkt[TCP].flags==66 or pkt[TCP].flags==194):
+                if not (pkt[TCP].flags==2 or pkt[TCP].flags==18 or pkt[TCP].flags==66 or pkt[TCP].flags==82 or pkt[TCP].flags==194):
                         return retVal
                 retVal = modifyMSS(pkt)
         return retVal
@@ -59,7 +59,7 @@ def pkt_callback_xfrm21(pkt):
         retVal = True
         if pkt.haslayer(TCP):
                 # ignore everything without a SYN or SYN&ACK or handshake options
-                if not (pkt[TCP].flags==2 or pkt[TCP].flags==18 or pkt[TCP].flags==66 or pkt[TCP].flags==194):
+                if not (pkt[TCP].flags==2 or pkt[TCP].flags==18 or pkt[TCP].flags==66 or pkt[TCP].flags==82 or pkt[TCP].flags==194):
                         return retVal
                 retVal = modifyMSS(pkt)
         return retVal
